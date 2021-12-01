@@ -1,0 +1,53 @@
+{
+  "name": "ngc_SMNCopyNumberCaller",
+  "title": "SMNCopyNumberCaller",
+  "summary": "SMNCopyNumberCaller is a tool to call the copy number of full-length SMN1, full-length SMN2, as well as SMN2\\u03947\\u20138 (SMN2 with a deletion of Exon7-8) from a whole-genome sequencing (WGS) BAM file.",
+  "dxapi": "1.0.0",
+  "version": "1.1.1",
+  "inputSpec": [
+    {
+      "name": "input_bam_file",
+      "label": "BAM file (example: sample.bam)",
+      "class": "array:file",
+      "optional": false,
+      "patterns": ["*.bam"],
+      "help": ""
+    },
+    {
+      "name": "smn_docker",
+      "label": "SMNCopyNumberCaller_v1.1.1 docker image",
+      "class": "file",
+      "optional": false,
+      "patterns": ["*.tar.gz"],
+      "help": "compressed docker image of SMNCopyNumberCaller"
+    }
+  ],
+  "outputSpec": [],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/code.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "access": {
+    "network": [
+      "*"
+    ],
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    }
+  }
+}
