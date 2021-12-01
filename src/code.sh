@@ -43,7 +43,7 @@ main() {
         echo "/home/dnanexus/$BamFileName" > /home/dnanexus/bam_file_path_tmp.txt
 
         # Load the docker image and then run SMNCaller
-        docker load -i smncopynumbercaller_v1.1.1.tar.gz
+        docker load -i /home/dnanexus/in/smn_docker/smncopynumbercaller_v1.1.1.tar.gz
         docker run -v /home/dnanexus:/myfiles clinicalgenomics/smncopynumbercaller:v1.1.1 python /opt/conda/bin/smn_caller.py --manifest /myfiles/bam_file_path_tmp.txt --genome 37 --outDir /myfiles/ --prefix $BamFileName
     done
     # Upload results
